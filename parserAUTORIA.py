@@ -10,6 +10,11 @@ HEADERS = {
 	'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
 	}
 FILE = 'cars.csv'
+
+
+
+
+
 def get_html(url, params=None) :
 	r = requests.get(url, headers=HEADERS, params=params)
 	return r
@@ -101,7 +106,7 @@ def parse() :
 		for page in range(1, pages_count + 1) :
 			print(f'Парсимо сторінку {page} з {pages_count}....')
 			html = get_html(URL, params={ 'page' : page})
-			cars.append(get_content(html.text))
+			cars.extend(get_content(html.text))
 		save_file(cars, FILE)	
 
 
